@@ -43,8 +43,8 @@ rutas.post("/Post",(req,res)=>
 })
 
 app.use(rutas)
-//app.listen(puerto, '104.225.141.251', ()=>
-app.listen(puerto, ()=>
+app.listen(80, '104.129.131.178', ()=>
+//app.listen(puerto, ()=>
 {
   console.log("Servidor lanzado en el puerto:",puerto);
 });
