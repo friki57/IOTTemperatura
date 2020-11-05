@@ -1,0 +1,27 @@
+{
+  "name": "IOTTemperatura",
+  "version": "1.0.0",
+  "description": "",
+  "main": "temperatura.js",
+  "scripts": {
+    "test": "nodemon src/temperatura.js",
+    "start": "node src/temperatura.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/friki57/IOTTemperatura.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/friki57/IOTTemperatura/issues"
+  },
+  "homepage": "https://github.com/friki57/IOTTemperatura#readme",
+  "dependencies": {
+    "cookie-parser": "^1.4.5",
+    "express": "^4.17.1",
+    "mongoose": "^5.10.12",
+    "morgan": "^1.10.0"
+  }
+}
