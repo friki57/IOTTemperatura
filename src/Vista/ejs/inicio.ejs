@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Gráfica de temperaturas</title>
+		<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
+	</head>
+	<body>
+		<h1>Gráfica</h1>
+		<p></p>
+		<canvas id="myChart" width="300" height="300"></canvas>
+				<script type="text/javascript">
+			function fechas(fecha)
+			{
+			  	console.log("fecha",fecha);
+				var nombres_dias = new Array("Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado");
+				var nombres_meses = new Array("Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre");
+				var fecha_actual = fecha;
+
+				dia_mes = fecha_actual.getDate() //dia del mes
+				dia_semana = fecha_actual.getDay() //dia de la semana
+				mes = fecha_actual.getMonth() + 1
+				anio = fecha_actual.getFullYear()
+
+
+				var fechaHora = fecha_actual;
+				var horas = fechaHora.getHours();
+				var minutos = fechaHora.getMinutes();
+				var segundos = fechaHora.getSeconds();
+				var sufijo = 'AM';
+
+				if(horas > 12) {
+				horas = horas - 12;
+				sufijo = "PM";
+				}
+
+				if(horas < 10) { horas = "0" + horas; }
+				if(minutos < 10) { minutos = "0" + minutos; }
+				if(segundos < 10) { segundos = "0" + segundos; }
+
+				//escribe en pagina
+				var ret = (/* /nombres_dias[dia_semana] + ", " + dia_mes + " de " +
+				 nombres_meses[mes - 1] + " de " + anio + "," +*/ " " + horas + ":"+minutos
+				 +" "/* + ":"+segundos*/+ " " + sufijo);
+
+				return ret;
+			}
+
+		</script>
+		<script>
+		    var datos = '<%- JSON.stringify(datos) %>'
+		    datos = JSON.parse(datos);
+		    var temperaturas = datos.map((a)=>a.temperatura)
+		    var horas = datos.map((a)=>(new Date(a.hora)).getTime()-(1000*60*60*4))
+		    horas = horas.sort((a,b)=>a-b)
+		    horas = horas.map((a)=>fechas(new Date(a)))
+		    console.log(datos, temperaturas, horas)
+
+			var ctx = document.getElementById('myChart').getContext('2d');
+			var myChart = new Chart(ctx, {
+			    type: 'line',
+			    data: {
+			        labels: horas,
+			        datasets: [{
+			            label: 'Temperaturas',
+			            data: temperaturas,
+			            backgroundColor:'rgba(255, 39, 32, 0.2)',
+			            borderColor:'rgba(255, 39, 23, 1)'
+			        }]
+			    },
+			    options: {
+			    	responsive: true,
+				    maintainAspectRatio: false,
+			        scales: {
+			            yAxes: [{
+			                ticks: {
+			                    beginAtZero: true
+			                }
+			            }]
+			        }
+			    }
+			});
+		</script>
+	</body>
+</html>

@@ -2,8 +2,10 @@
 #include <ESP8266WiFi.h>
 #include <ESP8266HTTPClient.h>
 
-const char* ssid     = "COMTECO-95265803";
-const char* password = "JBEMZ70607";
+//const char* ssid     = "COMTECO-95265803";
+//const char* password = "JBEMZ70607";
+const char* ssid     = "Erick";
+const char* password = "contraseña";
 String pubString;
 const char* host     = "104.129.131.178";
 float temperatura   = 0;
@@ -11,10 +13,11 @@ const int httpPort   = 80;
 
 void conectarWiFi()
 {
+   //WiFi.persistent( false );
    WiFi.begin(ssid, password);
     while (WiFi.status() != WL_CONNECTED) {
-      delay(500);
-      Serial.print(".");
+      delay(2000);
+      Serial.print("." + String(WiFi.status()));
     }
     Serial.println("WiFi connected");
     Serial.println("IP address: ");
