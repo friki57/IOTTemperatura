@@ -36,7 +36,7 @@ rutas.get("/",(req,res)=>
 
 rutas.post("/Post",(req,res)=>
 {
-  console.log("Me llegaron estos datos:", req.body);
+  req.query.hora = (new Date()).toString();
   console.log("Me llegaron estos datos:", req.query);
   bd.cruds.crudTemperatura.ingresar(req.query, ()=>{})
   res.send("Gracias, ya me llegaron los datos")
