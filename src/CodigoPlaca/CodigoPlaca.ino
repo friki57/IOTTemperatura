@@ -15,12 +15,12 @@ void loop() {
       float tempC = analogRead(A0); 
       tempC = (3.0 * tempC * 100.0)/1023.0; 
       int temp = tempC;
-      Serial.print(temp);
+      Serial.println(temp);
       POST(String(temp));
     }
     else
     {
-      Serial.println("Restante: " + String(((ultimo+tiempo)-millis())/1000));
+      Serial.print(String(((ultimo+tiempo)-millis())/1000) + " ");
     }
     delay(1000);
 }
